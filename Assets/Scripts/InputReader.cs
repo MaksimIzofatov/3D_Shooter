@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class InputReader : MonoBehaviour
@@ -8,17 +9,28 @@ public class InputReader : MonoBehaviour
    private const string MouseX = "Mouse X";
    private const string MouseY = "Mouse Y";
 
+   [SerializeField] private List<KeyCode> _jumpKeys;
+
    public event Action<float, float> Moved;
    public event Action<float, float> Looked;
+   public event Action Jumped;
 
    private void Update()
    {
-      float horizontal = Input.GetAxis(Horizontal);
-      float vertical = Input.GetAxis(Vertical);
+      float horizontal = Input.GetAxisRaw(Horizontal);
+      float vertical = Input.GetAxisRaw(Vertical);
       Moved?.Invoke(horizontal, vertical);
 
       float mouseX = Input.GetAxis(MouseX);
       float mouseY = Input.GetAxis(MouseY);
       Looked?.Invoke(mouseX, mouseY);
+
+      foreach (KeyCode key in _jumpKeys)
+      {
+         if (Input.GetKeyDown(key))
+         {
+            Jumped?.Invoke();
+         }
+      }
    }
 }
