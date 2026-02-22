@@ -10,10 +10,12 @@ public class InputReader : MonoBehaviour
    private const string MouseY = "Mouse Y";
 
    [SerializeField] private List<KeyCode> _jumpKeys;
+   [SerializeField] private List<KeyCode> _shootKeys;
 
    public event Action<float, float> Moved;
    public event Action<float, float> Looked;
    public event Action Jumped;
+   public event Action Shot;
 
    private void Update()
    {
@@ -30,6 +32,14 @@ public class InputReader : MonoBehaviour
          if (Input.GetKeyDown(key))
          {
             Jumped?.Invoke();
+         }
+      }
+      
+      foreach (KeyCode key in _shootKeys)
+      {
+         if (Input.GetKeyDown(key))
+         {
+            Shot?.Invoke();
          }
       }
    }
