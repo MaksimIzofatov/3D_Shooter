@@ -15,17 +15,21 @@ namespace DefaultNamespace
 
         private void Start()
         {
-            _currentWeapon  = _weapons[0];
+            SwitchWeapon(1);
         }
 
         private void OnEnable()
         {
             _inputReader.Shot += Shot;
+            _inputReader.WeaponSwitched += SwitchWeapon;
+            _inputReader.Reloaded += Reload;
         }
 
         private void OnDisable()
         {
-            _inputReader.Shot += Shot;
+            _inputReader.Shot -= Shot;
+            _inputReader.WeaponSwitched -= SwitchWeapon;
+            _inputReader.Reloaded -= Reload;
         }
 
         private void Shot()
@@ -33,9 +37,18 @@ namespace DefaultNamespace
             _currentWeapon.Shot(_camera);
         }
 
-        private void SwitchWeapon()
+        private void Reload()
         {
+            _currentWeapon.Reload();
+        }
+
+        private void SwitchWeapon(int weaponIndex)
+        {
+            if(_currentWeapon != null)
+                _currentWeapon.gameObject.SetActive(false);
             
+            _currentWeapon = _weapons[weaponIndex - 1];
+            _currentWeapon.gameObject.SetActive(true);
         }
     }
 }

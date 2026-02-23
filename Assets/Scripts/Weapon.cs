@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace DefaultNamespace
@@ -6,16 +7,52 @@ namespace DefaultNamespace
     {
         [SerializeField] private WeaponName _weaponName;
         [SerializeField] private float _damage;
+        [SerializeField] private int _maxMagazineCapacity;
+        [SerializeField] private int _maxBulletsInInventory;
         [SerializeField] private GameObject _test;
         
         private Vector2 _screenShotPercent = new Vector2(0.5f, 0.5f);
+        private int _bulletsInMagazine;
+        private int _bulletsInInventory;
+
+        private void Start()
+        {
+            _bulletsInMagazine = _maxMagazineCapacity;
+            _bulletsInInventory = _maxBulletsInInventory;
+        }
+
         public void Shot(Camera camera)
         {
-            Ray ray = camera.ViewportPointToRay(_screenShotPercent);
-            if (Physics.Raycast(ray, out RaycastHit hit))
+            if (_bulletsInMagazine > 0)
             {
-                Instantiate(_test, hit.point, Quaternion.identity);
+                Ray ray = camera.ViewportPointToRay(_screenShotPercent);
+                if (Physics.Raycast(ray, out RaycastHit hit))
+                {
+                    Instantiate(_test, hit.point, Quaternion.identity);
+                }
             }
+
+            _bulletsInMagazine--;
+            if (_bulletsInMagazine < 0)
+            {
+                _bulletsInMagazine = 0;
+            }
+        }
+
+        public void Reload()
+        {
+            int bulletsToLoad = _maxMagazineCapacity - _bulletsInMagazine;
+            if (bulletsToLoad <= _bulletsInInventory)
+            {
+                _bulletsInInventory -= bulletsToLoad;
+            }
+            else
+            {
+                bulletsToLoad = _maxBulletsInInventory;
+                _bulletsInInventory = 0;
+            } 
+            
+            _bulletsInMagazine += bulletsToLoad;
         }
     }
 
