@@ -1,4 +1,5 @@
 using System;
+using Enemy;
 using UnityEngine;
 
 namespace DefaultNamespace
@@ -28,6 +29,10 @@ namespace DefaultNamespace
                 Ray ray = camera.ViewportPointToRay(_screenShotPercent);
                 if (Physics.Raycast(ray, out RaycastHit hit))
                 {
+                    if (hit.collider.TryGetComponent(out EnemyHealth enemy))
+                    {
+                        enemy.TakeDamage(_damage * Time.deltaTime);
+                    }
                     Instantiate(_test, hit.point, Quaternion.identity);
                 }
             }
