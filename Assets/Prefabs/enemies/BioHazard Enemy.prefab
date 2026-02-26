@@ -1647,6 +1647,9 @@ GameObject:
   - component: {fileID: 9040561308445282691}
   - component: {fileID: 6460978354125498197}
   - component: {fileID: 7291902465456260872}
+  - component: {fileID: 7713206334291410739}
+  - component: {fileID: 8384536097292917764}
+  - component: {fileID: 8656081717557935781}
   m_Layer: 0
   m_Name: BioHazard Enemy
   m_TagString: Untagged
@@ -1704,7 +1707,64 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c116132924a4a8ebd33f67062638871, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _points: []
+  _points:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  _player: {fileID: 0}
+  _playerNoticeDistance: 10
+  _viewAngle: 60
+--- !u!136 &7713206334291410739
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1911320710345113242}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.35
+  m_Height: 1.85
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.9, z: 0}
+--- !u!114 &8384536097292917764
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1911320710345113242}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4197a9627ed4cfd9c838ccf8faf06bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _maxValue: 100
+--- !u!114 &8656081717557935781
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1911320710345113242}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 752982d3516e4d83afefe47d9fa7b74e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _damage: 5
+  _attackDistance: 0.5
+  _player: {fileID: 0}
 --- !u!1 &2299270744573623928
 GameObject:
   m_ObjectHideFlags: 0
