@@ -16,13 +16,16 @@ namespace DefaultNamespace
         private int _bulletsInMagazine;
         private int _bulletsInInventory;
 
+        public event Action Shot; 
+        public event Action Reloaded;
+
         private void Start()
         {
             _bulletsInMagazine = _maxMagazineCapacity;
             _bulletsInInventory = _maxBulletsInInventory;
         }
 
-        public void Shot(Camera camera)
+        public bool TryShot(Camera camera)
         {
             if (_bulletsInMagazine > 0)
             {
@@ -34,14 +37,14 @@ namespace DefaultNamespace
                         enemy.TakeDamage(_damage * Time.deltaTime);
                     }
                     Instantiate(_test, hit.point, Quaternion.identity);
+
                 }
+                _bulletsInMagazine--;
+                Shot?.Invoke();
+                return true;
             }
 
-            _bulletsInMagazine--;
-            if (_bulletsInMagazine < 0)
-            {
-                _bulletsInMagazine = 0;
-            }
+            return false;
         }
 
         public void Reload()
@@ -58,6 +61,7 @@ namespace DefaultNamespace
             } 
             
             _bulletsInMagazine += bulletsToLoad;
+            Reloaded?.Invoke();
         }
     }
 

@@ -43,14 +43,6 @@ namespace Player
             }
          }
       
-         foreach (KeyCode key in _shootKeys)
-         {
-            if (Input.GetKeyDown(key))
-            {
-               Shot?.Invoke();
-            }
-         }
-      
          foreach (KeyCode key in _firstWeaponKeys)
          {
             if (Input.GetKeyDown(key))
@@ -72,6 +64,17 @@ namespace Player
             if (Input.GetKeyDown(key))
             {
                Reloaded?.Invoke();
+            }
+         }
+      }
+
+      private void LateUpdate()
+      {
+         foreach (KeyCode key in _shootKeys)
+         {
+            if (Input.GetKeyDown(key))
+            {
+               Shot?.Invoke();
             }
          }
       }
