@@ -17,6 +17,8 @@ public class PlayerMover : MonoBehaviour
     private Vector3 _velocity;
     private bool _isJumping = false;
 
+    public event Action<Vector2> Moved;
+
     private void Awake()
     {
         _characterController = GetComponent<CharacterController>();
@@ -53,6 +55,8 @@ public class PlayerMover : MonoBehaviour
         Vector3 direction = transform.forward * v + transform.right * h;
         direction.Normalize();
         _characterController.Move(direction * _speed * Time.deltaTime);
+        
+        Moved?.Invoke((new Vector2(h, v)));
     }
 
     private bool CheckGround()

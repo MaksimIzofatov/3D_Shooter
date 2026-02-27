@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6675245347169551884}
   - component: {fileID: 6650351144226172060}
   - component: {fileID: 3040752391056056796}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: SM_Trigger_For_Police_Gun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -117,9 +117,9 @@ GameObject:
   - component: {fileID: 1108577552638376757}
   - component: {fileID: 3382305310724245129}
   - component: {fileID: 2015116921486233777}
-  - component: {fileID: 8262576985997150127}
   - component: {fileID: 4749353228358177357}
-  m_Layer: 0
+  - component: {fileID: 1401586991600560850}
+  m_Layer: 7
   m_Name: PoliceGun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -142,6 +142,7 @@ Transform:
   - {fileID: 4135563504082838211}
   - {fileID: 5076709988153658247}
   - {fileID: 805870801496623489}
+  - {fileID: 1069600656839046584}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &3382305310724245129
@@ -194,28 +195,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &8262576985997150127
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2666877785340701937}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 6713936440831153818, guid: d53d2a82048aaa54f90c2d1991983bf3, type: 3}
 --- !u!114 &4749353228358177357
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -230,7 +209,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _weaponName: 1
   _damage: 6
+  _maxMagazineCapacity: 0
+  _maxBulletsInInventory: 0
   _test: {fileID: 8473724571560206891, guid: cffdd90b9e655d34a9af2266aa1cc9c7, type: 3}
+--- !u!114 &1401586991600560850
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2666877785340701937}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe1330d8fd7445a2852ae08458f06277, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _weapon: {fileID: 4749353228358177357}
+  _particleSystem: {fileID: 866317542051495740}
 --- !u!1 &4550762000484459865
 GameObject:
   m_ObjectHideFlags: 0
@@ -243,7 +238,7 @@ GameObject:
   - component: {fileID: 407258105978810582}
   - component: {fileID: 7563227330766927752}
   - component: {fileID: 3895145620119639322}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: SM_Bolt_For_Police_Gun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -349,7 +344,7 @@ GameObject:
   - component: {fileID: 5698037844666778803}
   - component: {fileID: 287459923163209337}
   - component: {fileID: 4319943826026967252}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: SM_Trigger_Hook_For_Police_Gun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -443,3 +438,70 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4627193334333013973, guid: d53d2a82048aaa54f90c2d1991983bf3, type: 3}
+--- !u!1001 &1064969158134758104
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1108577552638376757}
+    m_Modifications:
+    - target: {fileID: 1336949550903370, guid: 4543ab5e3d405ec40a8d4e9aa5165030, type: 3}
+      propertyPath: m_Name
+      value: VFX_M4 Muzzle Flash
+      objectReference: {fileID: 0}
+    - target: {fileID: 4639870034382688, guid: 4543ab5e3d405ec40a8d4e9aa5165030, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.1738
+      objectReference: {fileID: 0}
+    - target: {fileID: 4639870034382688, guid: 4543ab5e3d405ec40a8d4e9aa5165030, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.0647
+      objectReference: {fileID: 0}
+    - target: {fileID: 4639870034382688, guid: 4543ab5e3d405ec40a8d4e9aa5165030, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.0003
+      objectReference: {fileID: 0}
+    - target: {fileID: 4639870034382688, guid: 4543ab5e3d405ec40a8d4e9aa5165030, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4639870034382688, guid: 4543ab5e3d405ec40a8d4e9aa5165030, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4639870034382688, guid: 4543ab5e3d405ec40a8d4e9aa5165030, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4639870034382688, guid: 4543ab5e3d405ec40a8d4e9aa5165030, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4639870034382688, guid: 4543ab5e3d405ec40a8d4e9aa5165030, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4639870034382688, guid: 4543ab5e3d405ec40a8d4e9aa5165030, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4639870034382688, guid: 4543ab5e3d405ec40a8d4e9aa5165030, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 4543ab5e3d405ec40a8d4e9aa5165030, type: 3}
+--- !u!198 &866317542051495740 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 198792769130808804, guid: 4543ab5e3d405ec40a8d4e9aa5165030, type: 3}
+  m_PrefabInstance: {fileID: 1064969158134758104}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1069600656839046584 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4639870034382688, guid: 4543ab5e3d405ec40a8d4e9aa5165030, type: 3}
+  m_PrefabInstance: {fileID: 1064969158134758104}
+  m_PrefabAsset: {fileID: 0}

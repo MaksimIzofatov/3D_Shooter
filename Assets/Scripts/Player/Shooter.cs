@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Generic;
-using Player;
+using DefaultNamespace;
 using UnityEngine;
 
-namespace DefaultNamespace
+namespace Player
 {
     public class Shooter : MonoBehaviour
     {
@@ -13,7 +13,9 @@ namespace DefaultNamespace
         
         private Weapon _currentWeapon;
 
-
+        public event Action Shot;
+        public event Action Reloaded;
+        
         private void Start()
         {
             SwitchWeapon(1);
@@ -21,26 +23,30 @@ namespace DefaultNamespace
 
         private void OnEnable()
         {
-            _inputReader.Shot += Shot;
+            _inputReader.Shot += Shoot;
             _inputReader.WeaponSwitched += SwitchWeapon;
             _inputReader.Reloaded += Reload;
         }
 
         private void OnDisable()
         {
-            _inputReader.Shot -= Shot;
+            _inputReader.Shot -= Shoot;
             _inputReader.WeaponSwitched -= SwitchWeapon;
             _inputReader.Reloaded -= Reload;
         }
 
-        private void Shot()
+        private void Shoot()
         {
-            _currentWeapon.Shot(_camera);
+            if (_currentWeapon.TryShot(_camera))
+            {
+                Shot?.Invoke();
+            }
         }
 
         private void Reload()
         {
             _currentWeapon.Reload();
+            Reloaded?.Invoke();
         }
 
         private void SwitchWeapon(int weaponIndex)
