@@ -10,6 +10,7 @@ namespace DefaultNamespace
         private float _value;
 
         public event Action<Health> Died; 
+        public event Action TookDamage; 
         public float Value
         {
             get => _value;
@@ -33,6 +34,7 @@ namespace DefaultNamespace
             }
             
             Value -= amount;
+            TookDamage?.Invoke();
 
             if (Value == 0)
             {
