@@ -1,11 +1,12 @@
 using System;
 using System.Collections.Generic;
 using DefaultNamespace;
+using UI;
 using UnityEngine;
 
 namespace Player
 {
-    public class Shooter : MonoBehaviour
+    public class Shooter : Changable
     {
         [SerializeField] private Camera _camera;
         [SerializeField] private InputReader _inputReader;
@@ -19,6 +20,7 @@ namespace Player
         private void Start()
         {
             SwitchWeapon(1);
+            OnValueChanged(_currentWeapon.CurrentBulletsInMagazine, _currentWeapon.MaxBulletsInMagazine);
         }
 
         private void OnEnable()
@@ -40,6 +42,7 @@ namespace Player
             if (_currentWeapon.TryShot(_camera))
             {
                 Shot?.Invoke();
+                OnValueChanged(_currentWeapon.CurrentBulletsInMagazine, _currentWeapon.MaxBulletsInMagazine);
             }
         }
 
@@ -47,6 +50,7 @@ namespace Player
         {
             _currentWeapon.Reload();
             Reloaded?.Invoke();
+            OnValueChanged(_currentWeapon.CurrentBulletsInMagazine, _currentWeapon.MaxBulletsInMagazine);
         }
 
         private void SwitchWeapon(int weaponIndex)

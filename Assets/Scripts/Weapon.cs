@@ -1,5 +1,6 @@
 using System;
 using Enemy;
+using UI;
 using UnityEngine;
 
 namespace DefaultNamespace
@@ -18,6 +19,8 @@ namespace DefaultNamespace
 
         public event Action Shot; 
         public event Action Reloaded;
+        public float CurrentBulletsInMagazine => _bulletsInMagazine;
+        public float MaxBulletsInMagazine => _maxMagazineCapacity;
 
         private void Start()
         {
