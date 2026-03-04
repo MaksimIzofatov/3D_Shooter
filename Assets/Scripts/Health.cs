@@ -1,9 +1,10 @@
 using System;
+using UI;
 using UnityEngine;
 
 namespace DefaultNamespace
 {
-    public abstract class Health : MonoBehaviour
+    public abstract class Health : Changable
     {
         [SerializeField] private float _maxValue;
         
@@ -24,6 +25,7 @@ namespace DefaultNamespace
         private void Start()
         {
             _value = _maxValue;
+            OnValueChanged(Value, _maxValue);
         }
 
         public void TakeDamage(float amount)
@@ -35,6 +37,7 @@ namespace DefaultNamespace
             
             Value -= amount;
             TookDamage?.Invoke();
+            OnValueChanged(Value, _maxValue);
 
             if (Value == 0)
             {
@@ -50,6 +53,7 @@ namespace DefaultNamespace
             }
             
             Value += amount;
+            OnValueChanged(Value, _maxValue);
         }
 
         protected virtual void OnDeath()
