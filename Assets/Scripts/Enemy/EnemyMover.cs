@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
@@ -10,6 +11,9 @@ namespace Enemy
     {
         [SerializeField] private List<Transform> _points;
         [SerializeField] private PlayerMover _player;
+        [SerializeField] private EnemyHealth _health;
+        [SerializeField] private EnemyAttacker _attacker;
+        [SerializeField] private EnemyAnimationEventHandler _animationEvent;
         [SerializeField] private float _playerNoticeDistance;
         [SerializeField] private float _viewAngle;
         
@@ -18,6 +22,14 @@ namespace Enemy
         private void Awake()
         {
             _agent = GetComponent<NavMeshAgent>();
+        }
+
+        private void OnEnable()
+        {
+            _health.TookDamage += StopMoving;
+            _attacker.Attacking += StopMoving;
+            _animationEvent.HitAnimationEnded += ContinueMoving;
+            _animationEvent.AttackedAnimationEnded += ContinueMoving;
         }
 
         private void Start()
@@ -37,6 +49,14 @@ namespace Enemy
             {
                 PickNewPatrolPoint();
             }
+        }
+
+        private void OnDisable()
+        {
+            _health.TookDamage -= StopMoving;
+            _attacker.Attacking -= StopMoving;
+            _animationEvent.HitAnimationEnded -= ContinueMoving;
+            _animationEvent.AttackedAnimationEnded -= ContinueMoving;
         }
 
         private void PickNewPatrolPoint()
@@ -65,6 +85,16 @@ namespace Enemy
             }
 
             return false;
+        }
+
+        private void StopMoving()
+        {
+            _agent.isStopped = true;
+        }
+
+        private void ContinueMoving()
+        {
+            _agent.isStopped = false;
         }
     }
 }

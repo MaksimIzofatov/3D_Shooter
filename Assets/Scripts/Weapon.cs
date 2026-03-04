@@ -8,6 +8,7 @@ namespace DefaultNamespace
     public class Weapon : MonoBehaviour
     {
         [SerializeField] private WeaponName _weaponName;
+        [SerializeField] private ParticleSystem _bloodEffect;        
         [SerializeField] private float _damage;
         [SerializeField] private int _maxMagazineCapacity;
         [SerializeField] private int _maxBulletsInInventory;
@@ -38,6 +39,8 @@ namespace DefaultNamespace
                     if (hit.collider.TryGetComponent(out EnemyHealth enemy))
                     {
                         enemy.TakeDamage(_damage * Time.deltaTime);
+                        var effect = Instantiate(_bloodEffect, hit.point, Quaternion.identity);
+                        effect.transform.right = hit.normal;
                     }
                     Instantiate(_test, hit.point, Quaternion.identity);
 
