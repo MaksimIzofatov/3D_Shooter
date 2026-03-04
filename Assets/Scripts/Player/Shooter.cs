@@ -20,7 +20,7 @@ namespace Player
         private void Start()
         {
             SwitchWeapon(1);
-            OnValueChanged(_currentWeapon.CurrentBulletsInMagazine, _currentWeapon.MaxBulletsInMagazine);
+            OnValueChanged(_currentWeapon.MaxBulletsInMagazine, _currentWeapon.MaxBulletsInMagazine);
         }
 
         private void OnEnable()
