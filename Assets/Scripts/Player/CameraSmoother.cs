@@ -1,4 +1,4 @@
-using System;
+using UI;
 using UnityEngine;
 
 namespace Player
@@ -17,10 +17,13 @@ namespace Player
 
         private void LateUpdate()
         {
-            transform.rotation = Quaternion.Lerp(_lastRotation, transform.rotation, _smoothValue);
-            transform.rotation = Quaternion.Euler(transform.eulerAngles + _offset);
+            if (PauseMenu.Instance.IsPaused == false)
+            {
+                transform.rotation = Quaternion.Lerp(_lastRotation, transform.rotation, _smoothValue);
+                transform.rotation = Quaternion.Euler(transform.eulerAngles + _offset);
 
-            _lastRotation = transform.rotation;
+                _lastRotation = transform.rotation;
+            }
         }
     }
 }

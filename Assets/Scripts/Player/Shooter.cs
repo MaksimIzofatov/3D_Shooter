@@ -39,27 +39,36 @@ namespace Player
 
         private void Shoot()
         {
-            if (_currentWeapon.TryShot(_camera))
+            if (PauseMenu.Instance.IsPaused == false)
             {
-                Shot?.Invoke();
-                OnValueChanged(_currentWeapon.CurrentBulletsInMagazine, _currentWeapon.MaxBulletsInMagazine);
+                if (_currentWeapon.TryShot(_camera))
+                {
+                    Shot?.Invoke();
+                    OnValueChanged(_currentWeapon.CurrentBulletsInMagazine, _currentWeapon.MaxBulletsInMagazine);
+                }
             }
         }
 
         private void Reload()
         {
-            _currentWeapon.Reload();
-            Reloaded?.Invoke();
-            OnValueChanged(_currentWeapon.CurrentBulletsInMagazine, _currentWeapon.MaxBulletsInMagazine);
+            if (PauseMenu.Instance.IsPaused == false)
+            {
+                _currentWeapon.Reload();
+                Reloaded?.Invoke();
+                OnValueChanged(_currentWeapon.CurrentBulletsInMagazine, _currentWeapon.MaxBulletsInMagazine);
+            }
         }
 
         private void SwitchWeapon(int weaponIndex)
         {
-            if(_currentWeapon != null)
-                _currentWeapon.gameObject.SetActive(false);
-            
-            _currentWeapon = _weapons[weaponIndex - 1];
-            _currentWeapon.gameObject.SetActive(true);
+            if (PauseMenu.Instance.IsPaused == false)
+            {
+                if (_currentWeapon != null)
+                    _currentWeapon.gameObject.SetActive(false);
+
+                _currentWeapon = _weapons[weaponIndex - 1];
+                _currentWeapon.gameObject.SetActive(true);
+            }
         }
     }
 }
