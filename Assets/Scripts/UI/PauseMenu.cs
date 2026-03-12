@@ -1,4 +1,5 @@
 using System;
+using DefaultNamespace;
 using Player;
 using UnityEngine;
 
@@ -44,6 +45,16 @@ namespace UI
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
             _isPaused = false;
+        }
+
+        public void ExitToMenu()
+        {
+            SceneSystem.LoadScene(SceneName.Menu);
+        }
+
+        public void ExitToDesktop()
+        {
+            SceneSystem.Exit();
         }
         private void Pause()
         {

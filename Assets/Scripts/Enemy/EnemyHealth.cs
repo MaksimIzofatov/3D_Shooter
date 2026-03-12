@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using DefaultNamespace;
 using UnityEngine;
@@ -9,6 +10,13 @@ namespace Enemy
     public class EnemyHealth : Health
     {
         [SerializeField] private float _destroyDelay = 5f;
+
+        public event Action Spawned;
+        private void OnEnable()
+        {
+            Spawned?.Invoke();
+        }
+
         protected override void OnDeath()
         {
             base.OnDeath();

@@ -12,7 +12,6 @@ namespace DefaultNamespace
         [SerializeField] private float _damage;
         [SerializeField] private int _maxMagazineCapacity;
         [SerializeField] private int _maxBulletsInInventory;
-        [SerializeField] private GameObject _test;
         
         private Vector2 _screenShotPercent = new Vector2(0.5f, 0.5f);
         private int _bulletsInMagazine;
@@ -42,8 +41,6 @@ namespace DefaultNamespace
                         var effect = Instantiate(_bloodEffect, hit.point, Quaternion.identity);
                         effect.transform.right = hit.normal;
                     }
-                    Instantiate(_test, hit.point, Quaternion.identity);
-
                 }
                 _bulletsInMagazine--;
                 Shot?.Invoke();

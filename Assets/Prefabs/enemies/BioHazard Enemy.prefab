@@ -1879,8 +1879,8 @@ MonoBehaviour:
   _health: {fileID: 8384536097292917764}
   _attacker: {fileID: 8656081717557935781}
   _animationEvent: {fileID: 7032030334933889474}
-  _playerNoticeDistance: 10
-  _viewAngle: 60
+  _playerNoticeDistance: 20
+  _viewAngle: 150
 --- !u!136 &7713206334291410739
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1931,7 +1931,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _damage: 5
-  _attackDistance: 1
+  _attackDistance: 1.5
   _player: {fileID: 0}
   _animationEvent: {fileID: 7032030334933889474}
 --- !u!114 &2917313768845847859
