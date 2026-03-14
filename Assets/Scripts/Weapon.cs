@@ -37,7 +37,7 @@ namespace DefaultNamespace
                 {
                     if (hit.collider.TryGetComponent(out EnemyHealth enemy))
                     {
-                        enemy.TakeDamage(_damage * Time.deltaTime);
+                        enemy.TakeDamage(_damage);
                         var effect = Instantiate(_bloodEffect, hit.point, Quaternion.identity);
                         effect.transform.right = hit.normal;
                     }
